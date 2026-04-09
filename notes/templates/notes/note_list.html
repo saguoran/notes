@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My iNote Sync</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background: #f4f4f4; }
+        .note-card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>My Notes</h1>
+    <hr>
+    {% for note in notes %}
+        <div class="note-card">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <small>Last updated: {{ note.updated_at|date:"M d, Y H:i" }}</small>
+        </div>
+    {% empty %}
+        <p>No notes found. Go to the Admin panel to add some!</p>
+    {% endfor %}
+</body>
+</html>
