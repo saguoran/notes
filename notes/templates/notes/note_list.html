@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>My Notes</h1>
+    <a href="{% url 'note_create' %}" style="background: #28a745; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: inline-block; margin-bottom: 20px;">+ Create New Note</a>
     <hr>
     {% for note in notes %}
         <div class="note-card">
