@@ -127,3 +127,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# This tells Django where to send users if they aren't logged in
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'note_list'
+LOGOUT_REDIRECT_URL = 'login'

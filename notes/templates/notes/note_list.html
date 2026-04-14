@@ -9,7 +9,13 @@
     </style>
 </head>
 <body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
     <h1>My Notes</h1>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" style="background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Logout</button>
+    </form>
+</div>
     <a href="{% url 'note_create' %}" style="background: #28a745; color: white; padding: 10px; text-decoration: none; border-radius: 5px; display: inline-block; margin-bottom: 20px;">+ Create New Note</a>
     <hr>
     {% for note in notes %}
@@ -17,6 +23,10 @@
             <h3>{{ note.title }}</h3>
             <p>{{ note.content }}</p>
             <small>Last updated: {{ note.updated_at|date:"M d, Y H:i" }}</small>
+            <div style="margin-top: 10px;">
+            <a href="{% url 'note_update' note.pk %}" style="color: blue; margin-right: 15px;">Edit</a>
+            <a href="{% url 'note_delete' note.pk %}" style="color: red;">Delete</a>
+        </div>
         </div>
     {% empty %}
         <p>No notes found. Go to the Admin panel to add some!</p>
