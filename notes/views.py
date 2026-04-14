@@ -7,7 +7,20 @@ from django.http import HttpResponseForbidden
 # Updated List View
 @login_required
 def note_list(request):
-    notes = Note.objects.all().order_by('-updated_at')
+    query = request.GET.get('q')
+    if query:
+        # Search in both title and content
+        notes = Note.objects.filter(
+            user=request.user,
+            title__icontains=query
+        ) | Note.objects.filter(
+            user=request.user,
+            content__icontains=query
+        )
+    else:
+        notes = Note.objects.filter(user=request.user)
+    
+    notes = notes.order_by('-updated_at')
     return render(request, 'notes/note_list.html', {'notes': notes})
 
 # New Create View
